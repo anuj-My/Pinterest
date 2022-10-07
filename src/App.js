@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Home from "./pages/Home";
+import Today from "./pages/Today";
+import { monthCollection } from "./data";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+const d = new Date();
+const day = d.getDate();
+const month = monthCollection[d.getMonth()];
+const year = d.getFullYear();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/today"
+          element={<Today day={day} month={month} year={year} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
